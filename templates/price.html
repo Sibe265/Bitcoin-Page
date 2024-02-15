@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <p>In this page you can watch the real-time price of Bitcoin.</p>
+
+    <body>
+        <h1>Historical Prices</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>High</th>
+                    <th>Low</th>
+                    <th>Open</th>
+                    <th>Close</th>
+                    <th>Volume</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for data_point in day_prices %}
+                    <tr>
+                        <td>{{ data_point['time'] | timestamp_to_string }}</td>
+                        <td>{{ data_point['high'] }}</td>
+                        <td>{{ data_point['low'] }}</td>
+                        <td>{{ data_point['open'] }}</td>
+                        <td>{{ data_point['close'] }}</td>
+                        <td>{{ data_point['volume'] }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </body>
+{% endblock content %}
